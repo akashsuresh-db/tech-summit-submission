@@ -1,0 +1,41 @@
+[
+  {
+    "customer_id": "CUST-0000214",
+    "action_type": "retention_offer",
+    "status": "approved",
+    "outreach_channel": "call",
+    "effective_from": "2026-08-27 05:03:49.035951",
+    "effective_to": "2026-08-27 05:04:10.529073",
+    "is_current": "false",
+    "_row_hash": "c70134fbf1846669a36d34c51d514ebf",
+    "_synced_at": "2026-08-27 05:03:49.035951",
+    "_source": "lakebase:app.rm_actions",
+    "_operation": "upsert"
+  },
+  {
+    "customer_id": "CUST-0000214",
+    "action_type": "retention_offer",
+    "status": "executed",
+    "outreach_channel": "call",
+    "effective_from": "2026-08-27 05:04:15.725305",
+    "effective_to": null,
+    "is_current": "true",
+    "_row_hash": "7f78ebaee57a4f1ed1aeaf1ac0a3d12c",
+    "_synced_at": "2026-08-27 05:04:15.725305",
+    "_source": "lakebase:app.rm_actions",
+    "_operation": "upsert"
+  },
+  {
+    "customer_id": "CUST-0004138",
+    "action_type": "retention_offer",
+    "status": "approved",
+    "outreach_channel": "call",
+    "effective_from": "2026-08-27 05:03:49.035951",
+    "effective_to": null,
+    "is_current": "true",
+    "_row_hash": "309ff59800906bd110e56ab87e9febc3",
+    "_synced_at": "2026-08-27 05:03:49.035951",
+    "_source": "lakebase:app.rm_actions",
+    "_operation": "upsert"
+  }
+]

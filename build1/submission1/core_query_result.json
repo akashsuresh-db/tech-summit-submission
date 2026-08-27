@@ -1,0 +1,167 @@
+[
+    {
+        "customer_id": "CUST-0004138",
+        "tier": "affluent",
+        "tenure_years": 19,
+        "revenue_at_risk_usd": 31903,
+        "balance_at_risk_usd": 1245716,
+        "atrisk_product_id": "PROD-DEP-2003",
+        "days_to_maturity": 25,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 72575
+    },
+    {
+        "customer_id": "CUST-0007505",
+        "tier": "affluent",
+        "tenure_years": 13,
+        "revenue_at_risk_usd": 31141,
+        "balance_at_risk_usd": 1224857,
+        "atrisk_product_id": "PROD-DEP-2002",
+        "days_to_maturity": 9,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 76247
+    },
+    {
+        "customer_id": "CUST-0006136",
+        "tier": "affluent",
+        "tenure_years": 18,
+        "revenue_at_risk_usd": 30077,
+        "balance_at_risk_usd": 1174293,
+        "atrisk_product_id": "PROD-DEP-2001",
+        "days_to_maturity": 15,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 73100
+    },
+    {
+        "customer_id": "CUST-0001326",
+        "tier": "affluent",
+        "tenure_years": 13,
+        "revenue_at_risk_usd": 30044,
+        "balance_at_risk_usd": 1180946,
+        "atrisk_product_id": "PROD-DEP-2003",
+        "days_to_maturity": 6,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 69546
+    },
+    {
+        "customer_id": "CUST-0005063",
+        "tier": "affluent",
+        "tenure_years": 8,
+        "revenue_at_risk_usd": 29909,
+        "balance_at_risk_usd": 1183570,
+        "atrisk_product_id": "PROD-DEP-2001",
+        "days_to_maturity": 38,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 73677
+    },
+    {
+        "customer_id": "CUST-0000697",
+        "tier": "affluent",
+        "tenure_years": 8,
+        "revenue_at_risk_usd": 29674,
+        "balance_at_risk_usd": 1174157,
+        "atrisk_product_id": "PROD-DEP-2003",
+        "days_to_maturity": 17,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 73091
+    },
+    {
+        "customer_id": "CUST-0000623",
+        "tier": "private",
+        "tenure_years": 11,
+        "revenue_at_risk_usd": 29636,
+        "balance_at_risk_usd": 1167846,
+        "atrisk_product_id": "PROD-DEP-2002",
+        "days_to_maturity": 1,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 70526
+    },
+    {
+        "customer_id": "CUST-0005618",
+        "tier": "affluent",
+        "tenure_years": 16,
+        "revenue_at_risk_usd": 29378,
+        "balance_at_risk_usd": 1149513,
+        "atrisk_product_id": "PROD-DEP-2002",
+        "days_to_maturity": 19,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 71281
+    },
+    {
+        "customer_id": "CUST-0005470",
+        "tier": "affluent",
+        "tenure_years": 15,
+        "revenue_at_risk_usd": 29331,
+        "balance_at_risk_usd": 1149249,
+        "atrisk_product_id": "PROD-DEP-2001",
+        "days_to_maturity": 7,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 68645
+    },
+    {
+        "customer_id": "CUST-0001992",
+        "tier": "affluent",
+        "tenure_years": 19,
+        "revenue_at_risk_usd": 29330,
+        "balance_at_risk_usd": 1142816,
+        "atrisk_product_id": "PROD-DEP-2003",
+        "days_to_maturity": 1,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 70283
+    },
+    {
+        "customer_id": "CUST-0008171",
+        "tier": "private",
+        "tenure_years": 19,
+        "revenue_at_risk_usd": 29249,
+        "balance_at_risk_usd": 1139578,
+        "atrisk_product_id": "PROD-DEP-2003",
+        "days_to_maturity": 37,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 70152
+    },
+    {
+        "customer_id": "CUST-0007875",
+        "tier": "affluent",
+        "tenure_years": 16,
+        "revenue_at_risk_usd": 29221,
+        "balance_at_risk_usd": 1143251,
+        "atrisk_product_id": "PROD-DEP-2002",
+        "days_to_maturity": 23,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 70138
+    },
+    {
+        "customer_id": "CUST-0003546",
+        "tier": "affluent",
+        "tenure_years": 17,
+        "revenue_at_risk_usd": 29183,
+        "balance_at_risk_usd": 1140106,
+        "atrisk_product_id": "PROD-DEP-2001",
+        "days_to_maturity": 35,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 68543
+    },
+    {
+        "customer_id": "CUST-0006284",
+        "tier": "affluent",
+        "tenure_years": 8,
+        "revenue_at_risk_usd": 29164,
+        "balance_at_risk_usd": 1153746,
+        "atrisk_product_id": "PROD-DEP-2002",
+        "days_to_maturity": 21,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 66940
+    },
+    {
+        "customer_id": "CUST-0001881",
+        "tier": "affluent",
+        "tenure_years": 19,
+        "revenue_at_risk_usd": 29118,
+        "balance_at_risk_usd": 1134319,
+        "atrisk_product_id": "PROD-DEP-2001",
+        "days_to_maturity": 30,
+        "recommended_action": "retention_offer",
+        "predicted_retained_usd": 65677
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "customer_id": "CUST-0000214",
+        "outreach_channel": "call",
+        "followup_due_at": "2026-08-30 05:00:18.641802+00"
+    },
+    {
+        "customer_id": "CUST-0004138",
+        "outreach_channel": "call",
+        "followup_due_at": "2026-08-30 05:00:18.641802+00"
+    }
+]

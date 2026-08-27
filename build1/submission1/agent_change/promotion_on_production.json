@@ -1,0 +1,10 @@
+[
+    {
+        "column_name": "followup_due_at",
+        "data_type": "timestamp with time zone"
+    },
+    {
+        "column_name": "outreach_channel",
+        "data_type": "text"
+    }
+]
