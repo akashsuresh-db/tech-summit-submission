@@ -1,0 +1,67 @@
+{
+  "requirement": "One app READS from and ACTS across what would otherwise be separate tools \u2014 unified on Databricks, no swivel-chair.",
+  "tools_unified": [
+    {
+      "capability": "READ \u00b7 analytics/customer-360",
+      "would_normally_be": "a separate analytics DB / data warehouse",
+      "here": "Lakebase app.customer_position + app.open_atrisk + app.nba_recommendations",
+      "evidence": {
+        "customer": "CUST-0007505",
+        "tier": "affluent",
+        "risk": 0.95,
+        "revenue_at_risk": 31141.42875,
+        "at_risk_product": "High-Yield Savings",
+        "nba": "retention_offer"
+      }
+    },
+    {
+      "capability": "RETRIEVE \u00b7 product search",
+      "would_normally_be": "a separate vector store (Pinecone/FAISS)",
+      "here": "Lakebase Search hybrid index on app.products",
+      "evidence": {
+        "top_reco": "Wealth Advisory Account",
+        "source": "lakebase_search"
+      }
+    },
+    {
+      "capability": "REASON \u00b7 assistant/insights",
+      "would_normally_be": "a separate LLM app / SaaS copilot",
+      "here": "Unity AI Gateway endpoint meridian-nba-gateway (governed + traced)"
+    },
+    {
+      "capability": "ACT \u00b7 write decision/outreach",
+      "would_normally_be": "a separate CRM / case tool",
+      "here": "Lakebase writable app.rm_actions (approve-before-save, audited)",
+      "evidence": {
+        "action_id": "0ab00d41-a3e9-4f02-a037-a4d40b934039",
+        "status": "approved",
+        "approved_by": "akash.s@databricks.com",
+        "created_at": "2026-08-27 08:44:50.390058+00:00",
+        "committed_at": "2026-08-27 08:44:50.390058+00:00"
+      }
+    }
+  ],
+  "closed_loop": "The approved action is written to app.rm_actions and immediately reflected on the next read of the same customer 360 (below), proving read+act happen in ONE app against ONE governed platform.",
+  "customer_notes_after_write": [
+    {
+      "id": "0ab00d41-a3e9-4f02-a037-a4d40b934039",
+      "status": "approved",
+      "approved_by": "akash.s@databricks.com",
+      "drafted_note": "Approved retention offer: rate match before maturity; then wealth cross-sell.",
+      "created_at": "2026-08-27 08:44:50.390058+00:00"
+    },
+    {
+      "id": "f0ca81b5-f59d-425e-a1b1-f83bacc23fed",
+      "status": "approved",
+      "approved_by": "akash.s@databricks.com",
+      "drafted_note": "Called re: maturing CD. Customer comparing competitor rates; open to a rate match. Following up before maturity.",
+      "created_at": "2026-08-27 06:09:00.958168+00:00"
+    }
+  ],
+  "decision_chain_ids": {
+    "customer": "CUST-0007505",
+    "at_risk_product": "PROD-DEP-2002",
+    "nba_offer_product": null,
+    "written_action": "0ab00d41-a3e9-4f02-a037-a4d40b934039"
+  }
+}

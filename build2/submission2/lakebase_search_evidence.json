@@ -1,0 +1,69 @@
+{
+  "requirement": "Retrieves from the Build-1 Lakebase Search index (native hybrid vector+BM25 over app.products) \u2014 NOT a separate vector store.",
+  "lakebase_search_extensions": [
+    "lakebase_text",
+    "lakebase_vector"
+  ],
+  "search_indexes_on_app_products": [
+    {
+      "indexname": "products_ann",
+      "indexdef": "CREATE INDEX products_ann ON app.products USING lakebase_ann (embedding vector_cosine_ops)"
+    },
+    {
+      "indexname": "products_bm25",
+      "indexdef": "CREATE INDEX products_bm25 ON app.products USING lakebase_bm25 (search_tsv)"
+    }
+  ],
+  "app_code": "server/main.py :: rm_recommendations() \u2014 embeds the customer query with databricks-gte-large-en, then runs a Reciprocal-Rank-Fusion query JOINing lakebase_ann (vector) + lakebase_bm25 (full-text) indexes on app.products. Retrieval never leaves Lakebase; there is no external/separate vector store.",
+  "endpoint": "GET /api/rm/recommendations/{customer_id}",
+  "live_query_for_customer": "CUST-0007505",
+  "query_text": "affluent tier customer, 13 year tenure. affluent tier relationship, 13 year tenure, home metro Dallas . Holds a maturing certificate of deposit; rate-sensitive, comparing competitor savings rates. Currently holds High-Yield Savings. Recommend complementary wealth, investment, lending or deposit products to deepen the relationship.",
+  "retrieval_source": "lakebase_search",
+  "ranked_results": [
+    {
+      "product_id": "PROD-INV-3001",
+      "product_name": "Wealth Advisory Account",
+      "product_type": "Advisory",
+      "segment": "investment",
+      "rate_apy": null,
+      "description": "Managed wealth advisory account with a dedicated advisor. For affluent and private-tier customers with investable assets; a cross-sell for high-balance depositors.",
+      "rrf": "0.016129"
+    },
+    {
+      "product_id": "PROD-LN-5002",
+      "product_name": "30-Year Fixed Mortgage",
+      "product_type": "Mortgage",
+      "segment": "lending",
+      "rate_apy": 0.0665,
+      "description": "30-year fixed-rate home mortgage. For homebuyers; a long-tenure relationship product.",
+      "rrf": "0.016129"
+    },
+    {
+      "product_id": "PROD-DEP-2001",
+      "product_name": "18-Month Certificate of Deposit",
+      "product_type": "CD",
+      "segment": "deposit",
+      "rate_apy": 0.0325,
+      "description": "18-month term CD for savers locking in a fixed rate; penalty on early withdrawal. For rate-focused deposit customers.",
+      "rrf": "0.015625"
+    },
+    {
+      "product_id": "PROD-LN-5001",
+      "product_name": "Home Equity Line of Credit",
+      "product_type": "HELOC",
+      "segment": "lending",
+      "rate_apy": 0.0725,
+      "description": "Revolving home-equity line of credit. For homeowners with equity; a lending cross-sell for established relationship customers.",
+      "rrf": "0.015385"
+    },
+    {
+      "product_id": "PROD-CRD-4001",
+      "product_name": "Premier Rewards Credit Card",
+      "product_type": "Card",
+      "segment": "lending",
+      "rate_apy": null,
+      "description": "Premium rewards credit card, travel + cashback perks. For mass-affluent and above with strong relationship tenure; a cross-sell for depositors without a card.",
+      "rrf": "0.015152"
+    }
+  ]
+}
