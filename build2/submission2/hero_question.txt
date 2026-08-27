@@ -1,0 +1,29 @@
+HERO QUESTION
+============
+"What is the next best action for this customer?"
+
+HERO CUSTOMER: CUST-0007505  (affluent tier, 13-yr tenure, Dallas)
+
+DECISION CHAIN (linked record IDs across the exports)
+-----------------------------------------------------
+1. TRIGGER  · app.open_atrisk.customer_id = CUST-0007505
+             attrition_risk=0.95, revenue_at_risk=$31,141
+             at-risk product = PROD-DEP-2002 (High-Yield Savings)
+             -> see view_query.sql / view_result.json  (the live at-risk queue)
+
+2. PRESCRIBE · app.nba_recommendations.customer_id = CUST-0007505
+             recommended_action = retention_offer, offer_rate = 3.85% APY
+             predicted_retained = $76,247, net = $64,611
+             cross-sell candidate = PROD-INV-3001
+
+3. RECOMMEND (Lakebase Search, hybrid) · top products for CUST-0007505:
+             PROD-INV-3001 (Wealth Advisory Account), PROD-DEP-2001 (18-Month Certificate of Deposit), PROD-LN-5002 (30-Year Fixed Mortgage), PROD-DEP-2003 (12-Month Certificate of Deposit), PROD-DEP-2011 (Money Market Account)
+
+4. EXPLAIN / WHAT-IF · assist_log.jsonl  (assistant explanation + what-if run, gateway-traced)
+
+5. DRAFT     · drafted_sample.md  (auto-drafted outreach memo)
+
+6. ACT (closed loop) · app.rm_actions.id = f0ca81b5-f59d-425e-a1b1-f83bacc23fed
+             status: proposed -> approved (approver recorded), created + committed timestamps
+             -> see writeback_table.json / state_table.json
+             committed decision is reflected on the next read of the customer 360.

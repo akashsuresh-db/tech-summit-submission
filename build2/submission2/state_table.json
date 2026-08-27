@@ -1,0 +1,97 @@
+{
+  "table": "app.rm_actions + app.open_atrisk (workflow state)",
+  "description": "Trigger events (attrition scoring) and recorded RM decisions with timestamps.",
+  "rows": [
+    {
+      "action_id": "2c7c12e5-6ad9-48f9-ba65-d58bb93f504d",
+      "customer_id": "CUST-0025884",
+      "status": "approved",
+      "action_type": "rm_outreach",
+      "proposed_at": "2026-08-27 06:35:24.719038+00:00",
+      "committed_at": "2026-08-27 06:35:24.719038+00:00",
+      "approved_by": "akash.s@databricks.com",
+      "risk_at_trigger": 0.431,
+      "revenue_at_risk": 0.0,
+      "trigger_product": "PROD-DEP-2002",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "c133bc2d-67eb-437e-a975-35b12dc38ddd",
+      "customer_id": "CUST-0006136",
+      "status": "approved",
+      "action_type": "rm_outreach",
+      "proposed_at": "2026-08-27 06:27:07.282553+00:00",
+      "committed_at": "2026-08-27 06:27:07.282553+00:00",
+      "approved_by": "akash.s@databricks.com",
+      "risk_at_trigger": 0.95,
+      "revenue_at_risk": 30077.31275,
+      "trigger_product": "PROD-DEP-2001",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "9c0533e4-6d4b-4124-940d-7ce8c12eb627",
+      "customer_id": "CUST-0007875",
+      "status": "approved",
+      "action_type": "rm_outreach",
+      "proposed_at": "2026-08-27 06:23:24.734618+00:00",
+      "committed_at": "2026-08-27 06:23:24.734618+00:00",
+      "approved_by": "akash.s@databricks.com",
+      "risk_at_trigger": 0.92,
+      "revenue_at_risk": 29221.27575,
+      "trigger_product": "PROD-DEP-2002",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "2e7aaa9a-3e48-42b3-b826-734ce2b0d7ec",
+      "customer_id": "CUST-0006136",
+      "status": "approved",
+      "action_type": "rm_outreach",
+      "proposed_at": "2026-08-27 06:16:41.105712+00:00",
+      "committed_at": "2026-08-27 06:16:41.105712+00:00",
+      "approved_by": "akash.s@databricks.com",
+      "risk_at_trigger": 0.95,
+      "revenue_at_risk": 30077.31275,
+      "trigger_product": "PROD-DEP-2001",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "f0ca81b5-f59d-425e-a1b1-f83bacc23fed",
+      "customer_id": "CUST-0007505",
+      "status": "approved",
+      "action_type": "rm_outreach",
+      "proposed_at": "2026-08-27 06:09:00.958168+00:00",
+      "committed_at": "2026-08-27 06:09:00.958168+00:00",
+      "approved_by": "akash.s@databricks.com",
+      "risk_at_trigger": 0.95,
+      "revenue_at_risk": 31141.42875,
+      "trigger_product": "PROD-DEP-2002",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "7d61081e-768b-4705-8102-9867934ca930",
+      "customer_id": "CUST-0004138",
+      "status": "approved",
+      "action_type": "retention_offer",
+      "proposed_at": "2026-08-27 05:00:18.641802+00:00",
+      "committed_at": "2026-08-27 05:00:18.641802+00:00",
+      "approved_by": "kanishk.jadhav@databricks.com",
+      "risk_at_trigger": 0.817,
+      "revenue_at_risk": 31902.911,
+      "trigger_product": "PROD-DEP-2003",
+      "trigger_event": "attrition_risk_scored"
+    },
+    {
+      "action_id": "226a2735-0af0-4e1c-9b52-a07cbfde1fc2",
+      "customer_id": "CUST-0000214",
+      "status": "executed",
+      "action_type": "retention_offer",
+      "proposed_at": "2026-08-27 05:00:18.641802+00:00",
+      "committed_at": "2026-08-27 05:03:58.902737+00:00",
+      "approved_by": "kanishk.jadhav@databricks.com",
+      "risk_at_trigger": 0.86,
+      "revenue_at_risk": 17712.70075,
+      "trigger_product": "PROD-DEP-2001",
+      "trigger_event": "attrition_risk_scored"
+    }
+  ]
+}

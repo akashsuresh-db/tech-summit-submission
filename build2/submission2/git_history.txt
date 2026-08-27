@@ -1,0 +1,7 @@
+* c0963cc (HEAD -> development) Build 2 · Exec: RM productivity leaderboard, contactability, AI insights, book-by-value
+* 82ba738 Build 2 · Act: RM notes write-back to app.rm_actions with approve-before-save (closed loop)
+* c9b1a30 Build 2 · Assist: Copilot (gateway) + Lakebase Search product recommendations + explain/what-if
+* 22f8cac Build 2 · Visualize: Lakebase data layer + at-risk RM funnel (served from app.* mirrors)
+* be19311 (origin/development) Build1
+* a5386a9 First build
+* 412e91b (origin/main, origin/HEAD, main) Add empty text file
