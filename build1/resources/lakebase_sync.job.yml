@@ -1,0 +1,69 @@
+# Build 1 · Lakebase — sync defined as code (DAB).
+#
+# Two jobs make the Lakebase data layer reproducible + scheduled, instead of a
+# UI-only setup:
+#   1. lakebase_delta_to_postgres  — refreshes the read-only mirrors in Lakebase
+#                                    from the governed UC Delta gold tables.
+#   2. lakebase_reverse_scd2_sync  — reverse Lakehouse Sync: streams writable
+#                                    app.rm_actions changes back into the UC Delta
+#                                    table rm_actions_history as SCD Type 2.
+#
+# Both run the Python entry points under lakebase/ (checked into this repo). The
+# reverse-sync job is scheduled hourly so Postgres writes land in the lakehouse
+# continuously; the forward sync runs on demand / after each pipeline refresh.
+
+variables:
+  lakebase_project:
+    default: meridian-bank
+  warehouse_id:
+    default: a92bf2222d618a1f
+
+resources:
+  jobs:
+    lakebase_delta_to_postgres:
+      name: "[Meridian] Lakebase — Delta → Postgres mirror sync"
+      tasks:
+        - task_key: sync_mirrors
+          spark_python_task:
+            python_file: ../lakebase/sync_from_delta.py
+            parameters:
+              - "--profile"
+              - "${workspace.profile}"
+              - "--warehouse"
+              - "${var.warehouse_id}"
+              - "--project"
+              - "${var.lakebase_project}"
+          environment_key: default
+      environments:
+        - environment_key: default
+          spec:
+            client: "4"
+            dependencies:
+              - databricks-sql-connector
+              - "psycopg[binary]"
+
+    lakebase_reverse_scd2_sync:
+      name: "[Meridian] Lakebase — reverse sync (Postgres → Delta SCD2)"
+      schedule:
+        quartz_cron_expression: "0 0 * * * ?"   # hourly
+        timezone_id: "UTC"
+        pause_status: PAUSED
+      tasks:
+        - task_key: reverse_sync
+          spark_python_task:
+            python_file: ../lakebase/reverse_sync_scd2.py
+            parameters:
+              - "--profile"
+              - "${workspace.profile}"
+              - "--warehouse"
+              - "${var.warehouse_id}"
+              - "--project"
+              - "${var.lakebase_project}"
+          environment_key: default
+      environments:
+        - environment_key: default
+          spec:
+            client: "4"
+            dependencies:
+              - databricks-sql-connector
+              - "psycopg[binary]"

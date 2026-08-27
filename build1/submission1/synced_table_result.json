@@ -1,0 +1,92 @@
+[
+    {
+        "customer_id": "CUST-0004138",
+        "tier": "affluent",
+        "tenure_years": 19,
+        "risk_band": "critical",
+        "attrition_risk": 0.817,
+        "balance_at_risk_usd": 1245716,
+        "revenue_at_risk_usd": 31903
+    },
+    {
+        "customer_id": "CUST-0007505",
+        "tier": "affluent",
+        "tenure_years": 13,
+        "risk_band": "critical",
+        "attrition_risk": 0.95,
+        "balance_at_risk_usd": 1224857,
+        "revenue_at_risk_usd": 31141
+    },
+    {
+        "customer_id": "CUST-0006136",
+        "tier": "affluent",
+        "tenure_years": 18,
+        "risk_band": "critical",
+        "attrition_risk": 0.95,
+        "balance_at_risk_usd": 1174293,
+        "revenue_at_risk_usd": 30077
+    },
+    {
+        "customer_id": "CUST-0001326",
+        "tier": "affluent",
+        "tenure_years": 13,
+        "risk_band": "critical",
+        "attrition_risk": 0.838,
+        "balance_at_risk_usd": 1180946,
+        "revenue_at_risk_usd": 30044
+    },
+    {
+        "customer_id": "CUST-0005063",
+        "tier": "affluent",
+        "tenure_years": 8,
+        "risk_band": "critical",
+        "attrition_risk": 0.95,
+        "balance_at_risk_usd": 1183570,
+        "revenue_at_risk_usd": 29909
+    },
+    {
+        "customer_id": "CUST-0000697",
+        "tier": "affluent",
+        "tenure_years": 8,
+        "risk_band": "critical",
+        "attrition_risk": 0.95,
+        "balance_at_risk_usd": 1174157,
+        "revenue_at_risk_usd": 29674
+    },
+    {
+        "customer_id": "CUST-0000623",
+        "tier": "private",
+        "tenure_years": 11,
+        "risk_band": "critical",
+        "attrition_risk": 0.888,
+        "balance_at_risk_usd": 1167846,
+        "revenue_at_risk_usd": 29636
+    },
+    {
+        "customer_id": "CUST-0005618",
+        "tier": "affluent",
+        "tenure_years": 16,
+        "risk_band": "critical",
+        "attrition_risk": 0.942,
+        "balance_at_risk_usd": 1149513,
+        "revenue_at_risk_usd": 29378
+    },
+    {
+        "customer_id": "CUST-0005470",
+        "tier": "affluent",
+        "tenure_years": 15,
+        "risk_band": "critical",
+        "attrition_risk": 0.866,
+        "balance_at_risk_usd": 1149249,
+        "revenue_at_risk_usd": 29331
+    },
+    {
+        "customer_id": "CUST-0001992",
+        "tier": "affluent",
+        "tenure_years": 19,
+        "risk_band": "critical",
+        "attrition_risk": 0.925,
+        "balance_at_risk_usd": 1142816,
+        "revenue_at_risk_usd": 29330
+    }
+]

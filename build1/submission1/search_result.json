@@ -1,0 +1,52 @@
+{
+  "query": "wealth advisory account for an affluent long-tenure customer",
+  "endpoint": "databricks-gte-large-en",
+  "method": "hybrid RRF (lakebase_ann + lakebase_bm25)",
+  "results": [
+    {
+      "product_id": "PROD-INV-3001",
+      "product_name": "Wealth Advisory Account",
+      "segment": "investment",
+      "product_type": "Advisory",
+      "vector_rank": 1,
+      "keyword_rank": 1,
+      "rrf_score": 0.032787
+    },
+    {
+      "product_id": "PROD-INV-3002",
+      "product_name": "Self-Directed Brokerage",
+      "segment": "investment",
+      "product_type": "Brokerage",
+      "vector_rank": 4,
+      "keyword_rank": 3,
+      "rrf_score": 0.031498
+    },
+    {
+      "product_id": "PROD-DEP-2011",
+      "product_name": "Money Market Account",
+      "segment": "deposit",
+      "product_type": "Savings",
+      "vector_rank": 2,
+      "keyword_rank": 6,
+      "rrf_score": 0.031281
+    },
+    {
+      "product_id": "PROD-DEP-2002",
+      "product_name": "High-Yield Savings",
+      "segment": "deposit",
+      "product_type": "Savings",
+      "vector_rank": 3,
+      "keyword_rank": 5,
+      "rrf_score": 0.031258
+    },
+    {
+      "product_id": "PROD-LN-5002",
+      "product_name": "30-Year Fixed Mortgage",
+      "segment": "lending",
+      "product_type": "Mortgage",
+      "vector_rank": 7,
+      "keyword_rank": 2,
+      "rrf_score": 0.031054
+    }
+  ]
+}

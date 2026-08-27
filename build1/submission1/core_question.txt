@@ -1,0 +1,9 @@
+Business question (Meridian Bank relationship manager):
+"Which of our critical at-risk customers have the most revenue at stake, and what is the
+model's recommended next best action for each — so we act on the biggest exposures first?"
+
+This is the hero decision: it joins the synced customer 360 (app.customer_position), the
+at-risk detail (app.open_atrisk), and the model's ranked recommendation
+(app.nba_recommendations) — all served from Lakebase at low latency — into the prioritized
+work queue the RM app drives. CUST-0000214 (the 12-year affluent hero with a large 18-month
+CD maturing in ~9 days) surfaces near the top with a retention_offer recommendation.

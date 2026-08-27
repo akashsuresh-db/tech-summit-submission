@@ -1,0 +1,7 @@
+*   010f544 (HEAD -> main) Promote Build 1 (Lakebase) from development to main
+|\  
+| * 95dd4af (development) Build 1 (Lakebase Search): native hybrid vector+full-text retrieval over products
+| * 6620e43 Build 1 (Lakebase): schema, Delta->Postgres sync, reverse SCD2 sync as DAB, branching + agentic change
+| * a5386a9 (origin/development) First build
+|/  
+* 412e91b (origin/main, origin/HEAD) Add empty text file

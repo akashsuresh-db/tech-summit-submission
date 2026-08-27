@@ -1,0 +1,36 @@
+Build 1 · Lakebase — Branching + agentic development
+=====================================================
+
+Lakebase Autoscaling models "main" as the `production` branch. We branched off it,
+iterated in isolation with an AI coding agent, then promoted the validated change back —
+so production was never at risk until the change was verified.
+
+PROJECT           projects/meridian-bank   (Lakebase Autoscaling, AWS us-east-1)
+MAIN (clean)      projects/meridian-bank/branches/production
+DEV BRANCH        projects/meridian-bank/branches/development
+                  - created off production via copy-on-write snapshot
+                  - source_branch_lsn: 0/2B32E38   source_branch_time: 2026-08-27T05:00:18Z
+                  - branch uid: br-square-base-d2b5188t
+                  - own read-write endpoint: ep-floral-bar-d2q2wz48.database.us-east-1.cloud.databricks.com
+
+CHANGES MADE ON THE DEV BRANCH (agentic development)
+  Migration: submission1/agent_change/001_add_rm_action_channel.sql
+  Authored by: an AI coding agent (Claude Code / ucode) — see the Co-authored-by trailer in
+  the migration header and in the git commit that adds it.
+  What it does (additive, backward-compatible schema evolution of the operational table):
+    - ALTER TABLE app.rm_actions ADD COLUMN outreach_channel TEXT
+        CHECK (outreach_channel IN ('call','email','branch','mobile'))
+    - ALTER TABLE app.rm_actions ADD COLUMN followup_due_at TIMESTAMPTZ
+    - CREATE INDEX rm_actions_followup_idx (partial, on followup_due_at)
+    - Backfill outreach_channel='call' + followup_due_at = decided_at + 3 days on approved actions
+
+ITERATE → VERIFY → PROMOTE
+  1. Applied the migration on the DEVELOPMENT branch only.
+  2. Verified the app still works on dev: the two approved rm_actions gained
+     outreach_channel='call' and a follow-up timestamp, and the read-only mirror was intact
+     (app.customer_position still had all 40,000 rows via copy-on-write).
+     -> submission1/agent_change/validation_on_dev.json
+  3. Promoted the same validated migration to PRODUCTION (main stays the clean demo env).
+     -> submission1/agent_change/promotion_on_production.json (both new columns present on prod)
+
+The dev branch is retained (no_expiry) for further iteration/forecasting.
