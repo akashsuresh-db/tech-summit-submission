@@ -1,0 +1,54 @@
+{
+  "dashboard": "Unity AI Gateway \u2014 usage & governance (meridian-nba-gateway)",
+  "source_inference_table": "akash_fevm_ts_catalog.meridian_bank.meridian_nba_gateway_payload",
+  "by_status": [
+    {
+      "status_code": "400",
+      "calls": "56"
+    },
+    {
+      "status_code": "200",
+      "calls": "36"
+    },
+    {
+      "status_code": "429",
+      "calls": "33"
+    },
+    {
+      "status_code": "403",
+      "calls": "11"
+    }
+  ],
+  "by_requester": [
+    {
+      "requester": "aswinjameschristy.nayagam@databricks.com",
+      "calls": "132",
+      "budget_blocks": "33"
+    },
+    {
+      "requester": "akash.s@databricks.com",
+      "calls": "2",
+      "budget_blocks": "0"
+    },
+    {
+      "requester": "5ee4510e-87db-4dc2-bb0e-a173958cfac7",
+      "calls": "2",
+      "budget_blocks": "0"
+    }
+  ],
+  "latency_ms": [
+    {
+      "avg_ms": "1493.0",
+      "max_ms": "3555"
+    }
+  ],
+  "totals": [
+    {
+      "total_calls": "136",
+      "ok": "36",
+      "budget_blocked": "33",
+      "rejected": "56"
+    }
+  ],
+  "note": "App-agent traffic shown. Coding-agent + MCP traffic appears here once routed through the same gateway (see agent_thread.txt)."
+}

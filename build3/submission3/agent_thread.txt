@@ -1,0 +1,46 @@
+# Build 3 · Extend governance to the coding agent + MCP (Steps 6–8)
+# Route ALL coding-agent traffic — including MCP calls — through the governed Unity Gateway.
+#
+# NOTE: these steps run in the coding-agent environment (ucode + Codex/CLI + Slack MCP)
+# on the operator's machine, not inside the deployed app. The config below points the
+# coding agent and its MCP servers at the same governed endpoint (meridian-nba-gateway),
+# so their calls land in the SAME inference table and usage dashboard as the app.
+
+## Step 6 — Onboard the coding agent with Unity Gateway (ucode)
+# Point the coding agent's model at the governed gateway endpoint (OpenAI-compatible base):
+export DATABRICKS_HOST="https://fevm-akash-fevm-ts.cloud.databricks.com"
+export OPENAI_BASE_URL="$DATABRICKS_HOST/serving-endpoints/meridian-nba-gateway/invocations"
+export OPENAI_API_KEY="$(databricks auth token -p fevm-ts | python3 -c 'import sys,json;print(json.load(sys.stdin)["access_token"])')"
+ucode --model meridian-nba-gateway   # coding agent now routed through the governed gateway
+
+## Step 7 — Onboard Slack MCP with Unity Gateway and add to the coding agent
+# .mcp.json (coding agent MCP registry) — Slack MCP whose LLM calls also go via the gateway:
+# {
+#   "mcpServers": {
+#     "slack": {
+#       "command": "npx", "args": ["-y", "@modelcontextprotocol/server-slack"],
+#       "env": {
+#         "SLACK_BOT_TOKEN": "{{secrets/meridian/slack_bot_token}}",
+#         "OPENAI_BASE_URL": "https://fevm-akash-fevm-ts.cloud.databricks.com/serving-endpoints/meridian-nba-gateway/invocations"
+#       }
+#     }
+#   }
+# }
+
+## Step 8 — Use Slack MCP to search instructions on the solution for guardrails
+# In the coding agent thread:
+#   > @slack search "guardrail" in #meridian-tech-summit
+#   (the Slack MCP call + the agent's summarization both traverse meridian-nba-gateway)
+
+## Verify (Step 9) — the agent + MCP calls appear in the same governed inference table:
+#   SELECT requester, count(*) FROM akash_fevm_ts_catalog.meridian_bank.meridian_nba_gateway_payload
+#   GROUP BY requester;   -- app SP, coding-agent user, and MCP identities all present.
+
+## BONUS — route the coding agent through its OWN governed endpoint (distinct inference table)
+#   Create meridian-coding-agent-gateway (same pattern, table_name_prefix="coding_agent")
+#   so agent traces are separable from the app's (agent_inference_table.json).
+
+# STATUS: app-agent routing + tracing + guardrail + budget block are LIVE and evidenced
+# (see gateway_service.txt, app_inference_table.json, gateway_usage.lvdash.json).
+# The coding-agent + Slack-MCP routing above must be executed in the operator's ucode
+# environment to capture live agent/MCP calls in the table.

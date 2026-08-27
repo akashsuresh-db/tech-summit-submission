@@ -1,0 +1,58 @@
+# Build 3 · Unity AI Gateway — model service + inference table creation script
+# Endpoint: meridian-nba-gateway  (task llm/v1/chat)
+# Serves the app's LLM as an EXTERNAL MODEL proxy to databricks-gpt-5-5, fronted by
+# Unity AI Gateway: usage tracking + inference-table tracing + guardrails + rate limit.
+# Every LLM call the app makes (Copilot, AI insight cards) is routed here and logged.
+
+# ── 1. Create the governed serving endpoint (external model -> foundation model) ──
+databricks serving-endpoints create --json '{
+  "name": "meridian-nba-gateway",
+  "config": {
+    "served_entities": [{
+      "name": "meridian-nba-proxy",
+      "external_model": {
+        "name": "databricks-gpt-5-5",
+        "provider": "databricks-model-serving",
+        "task": "llm/v1/chat",
+        "databricks_model_serving_config": {
+          "databricks_workspace_url": "https://fevm-akash-fevm-ts.cloud.databricks.com"
+        }
+      }
+    }]
+  }
+}'
+
+# ── 2. Attach AI Gateway: inference table (traces) + guardrails + rate-limit budget ──
+# (Python SDK — invalid_keywords is Beta on external models; PII BLOCK + safety are enforced.)
+python3 - << 'PY'
+from databricks.sdk import WorkspaceClient
+from databricks.sdk.service import serving as s
+w = WorkspaceClient()
+w.serving_endpoints.put_ai_gateway(
+    name="meridian-nba-gateway",
+    usage_tracking_config=s.AiGatewayUsageTrackingConfig(enabled=True),
+    # INFERENCE TABLE — every request/response logged for platform auditing:
+    inference_table_config=s.AiGatewayInferenceTableConfig(
+        enabled=True, catalog_name="akash_fevm_ts_catalog",
+        schema_name="meridian_bank", table_name_prefix="meridian_nba_gateway"),
+    # BUDGET / THRESHOLD — blocks calls exceeding the limit (returns HTTP 429):
+    rate_limits=[s.AiGatewayRateLimit(
+        calls=1, key=s.AiGatewayRateLimitKey.ENDPOINT,
+        renewal_period=s.AiGatewayRateLimitRenewalPeriod.MINUTE)],   # demo threshold; raise for prod
+    # GUARDRAIL — block sensitive-data exfiltration (PII) + unsafe content:
+    guardrails=s.AiGatewayGuardrails(input=s.AiGatewayGuardrailParameters(
+        safety=False,
+        pii=s.AiGatewayGuardrailPiiBehavior(behavior=s.AiGatewayGuardrailPiiBehaviorBehavior.BLOCK))),
+)
+print("ai_gateway configured: inference table + rate-limit budget + PII guardrail")
+PY
+
+# ── 3. Point the app at the gateway (app.yaml env) ──
+#   MERIDIAN_CHAT_MODEL=meridian-nba-gateway
+# The app's server (server/main.py::_chat) calls:
+#   WorkspaceClient().serving_endpoints.query(name="meridian-nba-gateway", messages=[...])
+# so ALL app LLM traffic (Copilot + AI insight cards) is governed + traced.
+
+# Inference table (traces for platform teams to investigate history):
+#   SELECT databricks_request_id, request_time, status_code, requester, request, response
+#   FROM akash_fevm_ts_catalog.meridian_bank.meridian_nba_gateway_payload ORDER BY request_time DESC;

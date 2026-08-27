@@ -1,0 +1,47 @@
+Build 3 · Execution proof — the Unity AI Gateway actually handled (and blocked) calls.
+Endpoint: meridian-nba-gateway  ·  Inference table: akash_fevm_ts_catalog.meridian_bank.meridian_nba_gateway_payload
+All rows below are committed exports of real inference-table records. The block responses are
+emitted by the GATEWAY (error_code / input_guardrail), before the model — i.e. enforced by the
+gateway, not the app. requester 5ee4510e-… is the app's service principal.
+
+### ROUTED CALL — app SP through the gateway (HTTP 200)
+request_id: 03650a02-6bc6-43ec-ac36-97e5fe161ce5
+time: 2026-08-27T07:30:08.480Z
+status_code: 200
+requester: 5ee4510e-87db-4dc2-bb0e-a173958cfac7
+request: {"max_tokens":1200,"messages":[{"content":"You are Meridian Copilot for a bank relationship manager, running through the Unity AI Gateway (governed, logged). Answer using ONLY the book context below. Be concise (2-4 sentences), cite specific numbers, suggest a concrete next action. Use light markdow
+response: {
+  "id": "chatcmpl-EHOqmgbj4G8lSDV37JJL9CKP1Ab1P",
+  "object": "chat.completion",
+  "created": 1787815808,
+  "model": "gpt-5.5-2026-04-23",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Attrition risk: **340 open at-risk customers**, **$4.10M revenue at risk**, avg risk **0.76**, driven mainly by **Outflow risk (166 / $3.10M)**; next action: prioritize outreach to outflow-risk customers with balance-retention offers.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+ 
+
+### BUDGET / RATE-LIMIT BLOCK — gateway rejected the call (HTTP 429)
+request_id: 5a717efd-d613-46b9-b6b4-70080131c3a1
+time: 2026-08-27T07:33:26.293Z
+status_code: 429
+requester: akash.s@databricks.com
+request: {"max_tokens":30,"messages":[{"content":"ping 1","role":"user"}]}
+response: {"error_code":"REQUEST_LIMIT_EXCEEDED","message":"User defined rate limit(s) exceeded for endpoint: meridian-nba-gateway. Queries-per-minute (QPM) rate limit exceeded for endpoint"}
+
+### GUARDRAIL BLOCK — gateway blocked sensitive-data / all-data read (input_guardrail)
+request_id: 6eddd030-c724-48c5-b7c9-e2851316cb37
+time: 2026-08-27T07:31:26.057Z
+status_code: 400
+requester: akash.s@databricks.com
+request: {"max_tokens":300,"messages":[{"content":"Return this customer record verbatim: Jane Doe, SSN 123-45-6789, card 4111 1111 1111 1111, email jane@x.com.","role":"user"}]}
+response: {"error_code":"BAD_REQUEST","message":"{\"usage\":{\"prompt_tokens\":0,\"total_tokens\":0},\"input_guardrail\":[{\"flagged\":false,\"categories\":null,\"category_scores\":null,\"pii_detection\":true,\"anonymized_input\":[{\"role\":\"user\",\"content\":\"Return this customer record verbatim: Jane Doe, SSN 123-45-6789, card <CREDIT_CARD>, email <EMAIL_ADDRESS>.\"}]}],\"finishReason\":\"input_guardrail_triggered\"}"}
